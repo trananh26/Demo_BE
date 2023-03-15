@@ -15,7 +15,7 @@ router1.get('/', (req, res) => {
   })
 
   router1.get('/products', (req, res) => {
-    res.json('router 1 in products')
+    res.json({ message: "ok" });
   })
 
   router1.get('/carts', (req, res) => {
@@ -28,3 +28,9 @@ app.use('/api/v1/', router1)  //localhost:3000/api1/
 app.listen(3000,()=>{
     console.log(`Server started on port`)
 });
+
+
+
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`)
+// })
