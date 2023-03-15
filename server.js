@@ -1,19 +1,30 @@
 const express = require('express')
 const app = express()
-const bodyParser = require('body-parser')
-require('dotenv').load()
-const port = process.env.PORT || 3000
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+const router1 = express.Router()
+const router2 = express.Router()
 
-let routes = require('./api/routes') //importing route
-routes(app)
 
-app.use(function(req, res) {
-    res.status(404).send({url: req.originalUrl + ' not found'})
-})
+app.get('/', (req, res) => {
+    res.json('Home')
+  })
 
-app.listen(port)
 
-console.log('RESTful API server started on: ' + port)
+router1.get('/', (req, res) => {
+    res.json('router 1 user')
+  })
+
+  router1.get('/products', (req, res) => {
+    res.json('router 1 in products')
+  })
+
+  router1.get('/carts', (req, res) => {
+    res.json('router 1 in carts')
+  })
+
+
+app.use('/api/v1/', router1)  //localhost:3000/api1/
+
+app.listen(3000,()=>{
+    console.log(`Server started on port`)
+});
