@@ -1,22 +1,61 @@
 const express = require('express')
+
 const router = express.Router()
+const AccountModels = require('./Models/Account')
 
-// khi truy xuất bằng đường dẫn thì mặc định get
-router.get('/', (req, res) => {
-    res.json('router 1 user GET')
+router.post('/register',(req, res, next)=>{
+  const UserName = req.body.UserName
+  const PassWord = req.body.PassWord
+  const Email = req.body.Email
+  const Role = req.body.Role
+  AccountModels.findOne({
+    username: UserName
+  })
+  .then(data=>{
+    if(data){
+      res.json('Tai khoan da ton tai')
+    }else{
+      return AccountModels.create({
+        username: UserName,
+        password: PassWord,
+        email: Email,
+        role: Role
+      })
+    }
+  })
+  
+  .then(data=>{
+    res.json(data)
+  })
+  .catch(err =>{
+    res.json('Tao tai khoan that bai')
+  })
   })
 
-  router.post('/', (req, res) => {
-    res.json('router 1 user POST')
-  })
+router.post('/login', (req, res, next) =>{
+  
+  const UserName = req.body.UserName
+  const PassWord = req.body.PassWord
 
-  router.put('/', (req, res) => {
-    res.json('router 1 user PUT')
+  AccountModels.findOne({
+    username: UserName,
+    password: PassWord
   })
+  .then(data=>{
+    if(data){
+      res.json(data)
+    }else{
+      res.status(400).json('Sai ten dang nhap hoac mat khau')
+    }
+  })
+  .catch(err=>{
+    res.status(500).json('co loi xay ra')
+  })
+ 
+})
 
-  router.delete('/', (req, res) => {
-    res.json('router 1 user DELETE')
-  })
+
+
 
   // router.get('/products', (req, res) => {
   //   res.json({ message: "ok" });
