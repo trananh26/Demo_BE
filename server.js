@@ -27,7 +27,7 @@ app.get('/', CheckLogin,(req, res, next) => {
 
  
  app.use((err, req, res, next)=>{
-  //cua xu ly loi
+  //logbug
  })
 
 app.use('/admin/api/v1/', CheckLogin, CheckAdmin, router1)  //localhost:3000/api1/
