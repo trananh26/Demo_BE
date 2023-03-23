@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')//tuong tac voi body
-const router1 = require('./ApiRouter.js')
+const AccountRouter = require('./Router/AccountRouter.js')
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -15,7 +15,7 @@ res.json('HOME')
 })
 
 // app.use('/admin/api/v1/', router1)  //localhost:3000/api1/
- app.use('/api/v1/', router1)  //localhost:3000/api1/
+ app.use('/api/v1/account/', AccountRouter)  //localhost:3000/api1/
 
 
 app.listen(3000,()=>{
