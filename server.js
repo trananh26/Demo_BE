@@ -19,6 +19,6 @@ res.json('HOME')
 
 
 app.listen(3000,()=>{
-    console.log(`Server started on port`)
+    console.log(`Server started on port localhost:3000`)
 });
 
