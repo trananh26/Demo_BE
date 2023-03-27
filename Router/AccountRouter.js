@@ -1,16 +1,42 @@
 const express = require('express')
 const router = express.Router()
 const AccountModels = require('../Models/Account')
+const PAGE_SIZE = 5
+//Lay tat ca du lieu tu DB
+router.get('/user',(req,res, next)=>{
 
-//Lay du lieu tu DB
-router.get('/',(req,res, next)=>{
-AccountModels.find({})
-.then(data=>{
-  res.json(data)
-})
-.catch(err=>{
-  res.status(500).json('Co loi xay ra')
-})
+  var page = req.query.page;
+  if(page){
+    // lấy theo page
+    page = parseInt(page)
+    if(page <0){
+      page = 1
+    }
+    var skip = (page - 1) * PAGE_SIZE
+
+    AccountModels.find({
+
+    })
+    .skip(skip)
+    .limit(PAGE_SIZE)
+    .then(data=>{
+      res.json(data)
+    })
+    .catch(err=>{
+      res.status(500).json('Co loi xay ra')
+    })
+
+  }else{
+    AccountModels.find({
+
+    })
+    .then(data=>{
+      res.json(data)
+    })
+    .catch(err=>{
+      res.status(500).json('Co loi xay ra')
+    })
+  }
 })
 
 
@@ -45,6 +71,7 @@ router.post('/register',(req, res, next)=>{
     if(data){
       res.json('Tai khoan da ton tai')
     }else{
+      console.log(UserName, PassWord, Email, Role)
       return AccountModels.create({
         username: UserName,
         password: PassWord,
@@ -116,5 +143,7 @@ router.post('/login', (req, res, next) =>{
   })
  
 })
+
+
 
 module.exports = router
