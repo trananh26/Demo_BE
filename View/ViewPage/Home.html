@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Web Demo - Home</title>
+        <link rel="icon" type="image/x-icon" href="https://pixabay.com/vectors/eco-icon-logo-leaf-friendly-green-5465425/"><link rel="stylesheet" href="Login.css"> <!--Import css-->
+        
+        <!--Import jquery, jquery dùng để thao tác với trang web-->
+        <script src="jquery-3.6.3.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <!--End import jquery-->
+
+        <!-- Latest compiled and minified CSS -->
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
+        <!-- jQuery library -->
+        <link rel="stylesheet" href="./View/Css/Home.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+        
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!--Import axios dùng để gọi api-->
+    </head>
+    <body>
+
+      <div id="content"></div>
+      
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" onclick="previousPage()" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#" onclick="loadPage(1)">1</a></li>
+          <li class="page-item"><a class="page-link" href="#" onclick="loadPage(2)">2</a></li>
+          <li class="page-item"><a class="page-link" href="#" onclick="loadPage(3)">3</a></li>
+          <li class="page-item"><a class="page-link" href="#" onclick="loadPage(4)">4</a></li>
+          <li class="page-item"><a class="page-link" href="#" onclick="loadPage(5)">5</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" onclick="nextPage()" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+        <!-- <table class="table">
+            <thead>
+              <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+
+            
+            <tbody>
+              <tr>
+                <td>John</td>
+                <td>Doe</td>
+                <td>john@example.com</td>
+              </tr>
+              <tr>
+                <td>Mary</td>
+                <td>Moe</td>
+                <td>mary@example.com</td>
+              </tr>
+              <tr>
+                <td>July</td>
+                <td>Dooley</td>
+                <td>july@example.com</td>
+              </tr>
+            </tbody>
+        </table>
+ -->
+
+
+        <script src="./View/Js/Home.js"></script>
+    </body>
+</html>

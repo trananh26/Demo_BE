@@ -10,14 +10,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+// gọi đường dẫn private
 app.use('/View', express.static(path.join(__dirname,'./View')))
 
-app.get('/',(req, res, next)=>{
-const loginpath = path.join(__dirname,'./View/Login.html')
+app.get('/Home',(req, res, next)=>{
+const loginpath = path.join(__dirname,'./View/ViewPage/Home.html')
 res.sendFile(loginpath)
 })
-
-
 
 
 // app.use('/admin/api/v1/', router1)  //localhost:3000/api1/

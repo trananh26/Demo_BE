@@ -14,13 +14,21 @@ router.get('/user',(req,res, next)=>{
     }
     var skip = (page - 1) * PAGE_SIZE
 
-    AccountModels.find({
-
-    })
+    AccountModels.find({ })
     .skip(skip)
     .limit(PAGE_SIZE)
     .then(data=>{
-      res.json(data)
+      
+      AccountModels.countDocuments({}).then((total)=>{
+        console.log(total)
+        var pagetotal = Math.ceil(total / PAGE_SIZE) //làm tròn lên
+
+        res.json({
+          totalpage: pagetotal,
+          data: data
+        });
+      })
+      
     })
     .catch(err=>{
       res.status(500).json('Co loi xay ra')
