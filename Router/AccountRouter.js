@@ -24,6 +24,7 @@ router.get('/user',(req,res, next)=>{
         var pagetotal = Math.ceil(total / PAGE_SIZE) //làm tròn lên
 
         res.json({
+          total:total,
           totalpage: pagetotal,
           data: data
         });

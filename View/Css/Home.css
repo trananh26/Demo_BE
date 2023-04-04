@@ -1,0 +1,21 @@
+#paging ul{
+    list-style: none;
+    display: flex;    
+}
+
+#paging .paginationjs-page,
+#paging .paginationjs-ellipsis,
+#paging .paginationjs-prev,
+#paging .paginationjs-next
+{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+#paging .active{
+    background: cadetblue;
+    color: black;
+}
