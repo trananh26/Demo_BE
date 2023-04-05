@@ -3,12 +3,24 @@ const app = express()
 const bodyParser = require('body-parser')//tuong tac voi body
 const AccountRouter = require('./Router/AccountRouter.js')
 const path = require('path')
+var cors = require('cors')
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
+
+app.use(cors())
+
+
+// CORS middleware cho phép các client khác có thể kết nối
+const allowCrossDomain = (req, res, next) => {
+    res.header(`Access-Control-Allow-Origin`, `*`);
+    res.header(`Access-Control-Allow-Methods`, `GET,PUT,POST,DELETE`);
+    res.header(`Access-Control-Allow-Headers`, `Content-Type`);
+    next();
+  };
 
 // gọi đường dẫn private
 app.use('/View', express.static(path.join(__dirname,'./View')))
