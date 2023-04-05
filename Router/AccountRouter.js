@@ -20,7 +20,6 @@ router.get('/user',(req,res, next)=>{
     .then(data=>{
       
       AccountModels.countDocuments({}).then((total)=>{
-        console.log(total)
         var pagetotal = Math.ceil(total / PAGE_SIZE) //làm tròn lên
 
         res.json({
@@ -144,11 +143,11 @@ router.post('/login', (req, res, next) =>{
     if(data){
       res.json(data)
     }else{
-      res.status(400).json('Sai ten dang nhap hoac mat khau')
+      res.status(400).json('Sai tên đăng nhập hoặc mật khẩu')
     }
   })
   .catch(err=>{
-    res.status(500).json('co loi xay ra')
+    res.status(500).json('Có lỗi xảy ra')
   })
  
 })
