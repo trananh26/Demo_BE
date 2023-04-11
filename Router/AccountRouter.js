@@ -9,7 +9,7 @@ router.get('/user',(req,res, next)=>{
   if(page){
     // lấy theo page
     page = parseInt(page)
-    if(page <0){
+    if(page <1){
       page = 1
     }
     var skip = (page - 1) * PAGE_SIZE
