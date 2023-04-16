@@ -1,4 +1,5 @@
 const express = require('express')
+const jwt = require('jsonwebtoken')
 const router = express.Router()
 const AccountModels = require('../Models/Account')
 const PAGE_SIZE = 5
@@ -141,7 +142,16 @@ router.post('/login', (req, res, next) =>{
   })
   .then(data=>{
     if(data){
-      res.json(data)
+      var token = jwt.sign({_id: data._id},'password')
+      // ,{
+      //   expiresIn: 120   // thời gian hết hạn token
+      // },function(err,data){
+      //     console.log("data:",data)
+      // })    
+      res.json({
+        message: 'Successful',
+        token: token
+      })
     }else{
       res.status(400).json('Sai tên đăng nhập hoặc mật khẩu')
     }

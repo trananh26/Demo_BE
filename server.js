@@ -3,14 +3,16 @@ const app = express()
 const bodyParser = require('body-parser')//tuong tac voi body
 const AccountRouter = require('./Router/AccountRouter.js')
 const path = require('path')
+const jwt = require('jsonwebtoken')
 var cors = require('cors')
+var cookieParser = require('cookie-parser')
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
-
+app.use(cookieParser())
 app.use(cors())
 
 
@@ -28,6 +30,20 @@ app.use('/View', express.static(path.join(__dirname,'./View')))
 app.get('/',(req, res, next)=>{
 const loginpath = path.join(__dirname,'./View/ViewPage/Login.html')
 res.sendFile(loginpath)
+})
+
+app.get('/private',(req, res, next)=>{
+try {
+    var token = req.cookies.token
+    var result = jwt.verify(token, 'password')
+    if(result){
+        next()
+    }
+} catch (error) {
+    return redirect('/')
+}
+}, (req, res, next)=>{
+    res.json('ahihi')
 })
 
 app.get('/Home',(req, res, next)=>{
